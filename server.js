@@ -13,7 +13,6 @@ firebase.initializeApp({
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-console.log("asdas");
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
