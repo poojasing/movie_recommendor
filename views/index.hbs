@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+<header>
+  <button><a href="/login">login</a></button>
+  <button><a href="/signup">signup</a></button>
+  <button><a href="/logout">logout</a></button>
+</header>
+
+<form action="/" method="POST"> 
+  <div id="movie-card-list">
+    <div class="movie-card" data-movie="Blade Runner">
+      <div class="movie-card__overlay"></div>
+      <div class="movie-card__share">
+        <button class="movie-card__icon"><i class="material-icons">&#xe87d</i></button>
+        <button class="movie-card__icon"><i class="material-icons">&#xe253</i></button>
+        <button class="movie-card__icon"><i class="material-icons">&#xe80d</i></button>
+      </div>
+      <div class="movie-card__content">
+        <div class="movie-card__header">
+          <h1 class="movie-card__title">Blade Runner</h1>
+          <h4 class="movie-card__info">(1982) Sci-Fi, Thriller</h4>
+        </div>
+        <p class="movie-card__desc">A blade runner must pursue and try to terminate four replicants who stole a ship in space and have returned to Earth to find their creator.</p>
+        <button class="btn btn-outline movie-card__button" type="button">Watch Trailer</button>
+      </div>
+    </div>
+  </div>
+</form> 
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Movie</title>
+        <style media="screen">
+            body{
+                display: flex;
+                min-height: 100vh;
+                width: 100%;
+                padding: 0;
+                margin-top: 0;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            #uploader{
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                border-radius: 5px;
+                padding: 0;
+                margin-top: 3px;
+                margin-bottom: 10px;
+            }
+            .pd{
+                margin-top: 3px;
+                margin-left: 35%;
+            }
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="row">
+            <h2 style="text-align: center;">Enter Movie Details</h2>
+            <!-- <div class="col-sm-0"></div> -->
+            <div class="col-sm-12">
+                    <label>Certification</label>
+                    <div class="pad"><input class="form-control" type="text" name="certification" id="certification" placeholder="U/A"></div>
+                    <label>Date</label>
+                    <div class="pad"><input placeholder="DD-MM-YYYY" class="form-control" type="text" name="date" id="date"  placeholder="01-01-2001"></div>
+                    <label>ImageFile</label>
+                    <label>(Image Size :500x500)</label>
+                    <div class="pad"><input class="btn form-control" type="file" name="imageFile" id="filebutton"></div>
+                    <div><progress value="0" max="100" id="uploader">0%</progress></div>
+                    <label>Duration</label>
+                    <div class="pad"><input class="form-control" type="text" name="duration" placeholder="12:00" id="duration"></div>
+                    <label>Language</label>
+                    <div class="pad"><input class="form-control" type="text" name="language" id="language"></div>
+                    <label>Category</label>
+                    <div class="pad"><input class="form-control" type="text" name="category" id="category"></div>
+                    <label>Movie Name</label>
+                    <div class="pad"><input class="form-control" type="text" name="movieName" id="movieName"></div>
+                    <label>Timing</label>
+                    <div class="pad"><input class="form-control" placeholder="12:00" type="text" name="timing" id="timing"></div>
+                    <div class="pd">
+                        <input class="btn btn-primary" type="button" value="SUBMIT" onclick="insertResult();">
+                    </div>
+            </div>
+            <!-- <div class="col-sm-4"></div> -->
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+        <script>
+           
+            var config = {
+                apiKey: "AIzaSyAMnNc7S-1ol0lh0fu8eNlPXXX0v3t--PE",
+                authDomain: "mrsystem-54a36.firebaseapp.com",
+                databaseURL: "https://mrsystem-54a36.firebaseio.com",
+                projectId: "mrsystem-54a36",
+                storageBucket: "mrsystem-54a36.appspot.com",
+                messagingSenderId: "932397616506"
+            };
+            firebase.initializeApp(config);
+
+
+            var uploader = document.getElementById('uploader');
+            var filebutton = document.getElementById('filebutton');
+            var imageurl;
+
+            filebutton.addEventListener('change', function(e){
+                var file = e.target.files[0];
+                var storageRef = firebase.storage().ref('Movies/'+file.name);
+                var task = storageRef.put(file);
+
+                task.on('state_changed',function(snapshot){
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+                        uploader.value = percentage;
+                    },
+                    function(error){},
+                    function(){
+                        task.snapshot.ref.getDownloadURL().then(function(downloadURL){
+                            imageurl = downloadURL;
+                        });
+                    }
+                );
+            });
+
+            function insertResult(){
+                var certification = $('#certification').val().toUpperCase();
+                var date = $('#date').val();
+                var duration = $('#duration').val();
+                var language = $('#language').val().toUpperCase();
+                var movieName = $('#movieName').val().toUpperCase();
+                var timing = $('#timing').val();
+                var category = $('#category').val();
+                var status = ['A','A', 'A','A','A', 'A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A','A','A', 'A','A'];
+                if(certification&&date&&duration&&language&&movieName&&timing&&status)
+                {
+                    firebase.database().ref('Movies/').push({
+                    certification : certification,
+                    date : date,
+                    duration : duration,
+                    language : language,
+                    image_url : imageurl,
+                    hall : {status},
+                    category : category,
+                    name : movieName,
+                    timing : timing
+                    }).then(()=>
+                    {
+                        window.location.href='/';
+                    });
+                }
+                else
+                {
+                    window.alert("Please Enter All The Fields Carefully!!!");
+                }
+            }
+        </script>
+    </body>
+</html>
+</html>

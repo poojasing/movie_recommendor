@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Movies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="css/movie.css"> 
+  <script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+ body {
+	padding: 25px;
+    background: linear-gradient(to top,#FFFFFF,#6DD5FA,#2980B9) no-repeat;
+}
+</style>
+</head>
+<body>
+  <div class="align">
+  <div class="row">
+  {{#each movieDetails}} 
+  <div class="container col-lg-4">     
+  <div class="card siz"> 
+      <div class="card-header">
+        <img class="card-img" src={{image_url}} alt="Card image">
+      </div>  
+      <div class="card-body">
+        <h1 class="card-title">{{name}}</h1>
+        {{!-- <h1> movieKey : {{movieKey}} </h1> --}}
+        <p class="language fontsize">Language: {{language}}</p>
+        <p class="date fontsize">Date: {{date}}</p>
+        <p class="duration fontsize">Duration: {{duration}}hr</p>
+        <p class="timing fontsize">Timing: {{timing}}hr</p>
+        <p class="timing fontsize">Certification: U/A</p>
+        <a class="trailer-preview" href="/movieBooking?key={{movieKey}}">
+         <i class="fa fa-play" aria-hidden="true"></i>
+        </a>
+      </div>
+  </div>
+  </div>
+  {{/each}}
+  </div>
+  </div>
+  <footer>
+    <div>
+        <button id="button" class="pos btn" onclick="window.location.href='/choice'" type="button">
+         HOME</button>
+
+    </div>
+  </footer>
+  <script src='https://use.fontawesome.com/7a267b3298.js'></script>
+</body>
+</html>

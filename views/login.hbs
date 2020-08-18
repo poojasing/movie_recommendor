@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+    .box {
+    background-color: lightgrey;
+    width: 500px;
+    position: relative;
+    left: 350px; 
+    top: 100px;
+    border: 10px solid rgb(5, 250, 26);
+    padding: 25px;
+    margin: 25px;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px darkgrey;
+  }
+ body {
+	padding: 25px;
+    background: linear-gradient(to top,#FFFFFF,#6DD5FA,#2980B9) no-repeat;
+}
+  </style>
+</head>
+<body>
+<div class="container box">
+  <header>
+  <center><h2>Login</h2></center>
+  </header>
+  <form action="/" method="POST">
+    <div class="form-group" style="text-align:left;">
+      <label for="email">username</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter username" name="username">
+    </div>
+    <div class="form-group" style="text-align:left;">
+      <label for="pwd">Password</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <button><a href="/signup">signup</a></button>
+  </form>
+    </div>
+</div>
+
+</body>
+</html>
