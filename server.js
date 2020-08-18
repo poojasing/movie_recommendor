@@ -114,7 +114,6 @@ app.post("/choice", (req, res) => {
         arr = childSnapshot.val().category.split(/\s*,\s*/);
         var n = arr.length;
         var flag = 0;
-        console.log(n);
         console.log(arr);
         for (var i = 0; i < n; i++) {
           if (arr[i] === "action" || arr[i] === "comedy") {
