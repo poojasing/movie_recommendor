@@ -7,8 +7,8 @@ var firebase = require("firebase-admin");
 var serviceAccount = require("./sk.json");
 
 firebase.initializeApp({
-  credential: firebase.credential.cert(serviceAccount),
-  databaseURL: "https://mrsystem-54a36.firebaseio.com",
+  credential: '',
+  databaseURL: '',
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
